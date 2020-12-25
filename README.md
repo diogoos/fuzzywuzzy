@@ -50,7 +50,7 @@ let matchingBlcoks = matcher.matchingBlocks() // blocks that match in each strin
 
 ### Direct usage of TokenFunctions
 Find ratios by sorting tokens or creating sets based on them.
-Internally used for weighted ratios, can also be used publically for other reasons.
+Used internally for weighted ratios.
 ```swift
 // Sorted ratio
 let regularRatio = "fuzzy wuzzy was a bear".ratio(to: "wuzzy fuzzy was a bear") // returns 91
@@ -60,6 +60,7 @@ let sortedRatio = TokenFunctions.tokenSortRatio("fuzzy wuzzy was a bear", "wuzzy
 let dupRatio = TokenFunctions.tokenSortRatio("fuzzy was a bear", "fuzzy fuzzy was a bear") // returns 84
 let setRatio = TokenFunctions.tokenSetRatio("fuzzy was a bear", "fuzzy fuzzy was a bear") // returns 100
 ```
+There are also partial equivalents for these functions, such as `partialTokenSortRatio` and `partialTokenSetRatio`
 
 ## License
 Fuzzywuzzy (Swift) can be copied and/or modified under the terms of GNU General Public License.
