@@ -140,6 +140,28 @@ final class FuzzywuzzyTests: XCTestCase {
         XCTAssertLessThan(TokenFunctions.tokenSort(s1: s1, s2: s2, forceAscii: false), 100)
     }
 
+    func testREADME() {
+        // make sure that the results displayed are accurate
+        XCTAssertEqual("this is a test".ratio(to: "did you know this is a test"), 68)
+        XCTAssertEqual("this is a test".partialRatio(to: "did you know this is a test"), 100)
+        XCTAssertEqual("this is an interesting test".weightedRatio(to: "this is a test!"), 86)
+
+        // makes sure initializer and methods still exist
+        let matcher = StringMatcher(compare: "this is interesting", to: "this is cool")
+        _ = matcher.ratio()
+        _ = matcher.opcodes()
+        _ = matcher.matchingBlocks()
+
+
+        // Sorted ratio
+        XCTAssertEqual("fuzzy wuzzy was a bear".ratio(to: "wuzzy fuzzy was a bear"), 91)
+        XCTAssertEqual(TokenFunctions.tokenSortRatio("fuzzy wuzzy was a bear", "wuzzy fuzzy was a bear"), 100)
+
+        // Set-based ratio
+        XCTAssertEqual(TokenFunctions.tokenSortRatio("fuzzy was a bear", "fuzzy fuzzy was a bear"), 84)
+        XCTAssertEqual(TokenFunctions.tokenSetRatio("fuzzy was a bear", "fuzzy fuzzy was a bear"), 100)
+    }
+
     static var allTests = [
         ("Test that the ratio is 100 when comparing equal strings", testEqualStringsRatio),
         ("Test that the ratios are case insensitive when fully processed", testCaseInsensitive),
@@ -159,5 +181,6 @@ final class FuzzywuzzyTests: XCTestCase {
         ("Test weightedRatio with a variety of unicode strings", testWeightedRatioUnicodeString),
         ("Test tokenSet returns correct results when removing and when keeping non-ASCII characters", testTokenSetForceAscii),
         ("Test tokenSort returns correct results when removing and when keeping non-ASCII characters", testTokenSetForceAscii),
+        ("Test that the code examples in the README file are accurate", testREADME)
     ]
 }

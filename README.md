@@ -26,12 +26,12 @@ import Fuzzywuzzy
 
 ### Simple Ratio
 ```swift
-"this is a test".ratio(to: "this is a test!) // returns 97
+"this is a test".ratio(to: "did you know this is a test") // returns 68
 ```
 
 ### Partial Ratio
 ```swift
-"this is a test".partialRatio(to: "this is a test!") // returns 100
+"this is a test".partialRatio(to: "did you know this is a test") // returns 100
 ```
 
 ### Weighted Ratio
