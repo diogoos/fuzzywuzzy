@@ -79,7 +79,7 @@ internal extension String {
     /// Generate a string index range from character positions
     /// in the string
     func range(start: Int, end: Int) -> Range<String.Index> {
-        index(startIndex, offsetBy: start)..<index(startIndex, offsetBy: end)
+        index(startIndex, offsetBy: start)..<index(startIndex, offsetBy: end > count ? count : end)
     }
 
     /// Sort the tokens (words) in the strings
